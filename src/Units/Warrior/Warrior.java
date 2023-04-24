@@ -1,14 +1,15 @@
 package Units.Warrior;
 
 import Units.BaseHero;
+import java.util.ArrayList;
 
 public abstract class Warrior extends BaseHero {
 
     protected int resistance, ultimateDamage;
 
-    public Warrior(int hp, int maxHp, int armor, int damage, int lvl,
-                   int resistance, int ultimateDamage, String name) {
-        super(hp, maxHp, armor, damage, lvl, name);
+    public Warrior(int hp, int maxHp, int armor, int damage, int lvl, int initiative,
+                   int resistance, int ultimateDamage, String name, ArrayList<BaseHero> team) {
+        super(hp, maxHp, armor, damage, lvl, initiative, name, team);
         this.resistance = resistance;
         this.ultimateDamage = ultimateDamage;
     }
