@@ -1,27 +1,30 @@
 package Units;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public abstract class BaseHero implements GameInterface, Comparable<BaseHero> {
 
-    protected int hp, maxHp, armor, damage, lvl;
+    protected int hp, maxHp, armor, damage, initiative, lvl; //exp
     protected String name;
     protected ArrayList<BaseHero> team = new ArrayList<>();
-    protected int initiative;
-    //double position, speed;
+    protected Coordinate coordinate;
 
-    public BaseHero(int hp, int maxHp, int armor, int damage, int lvl, int initiative, String name, ArrayList<BaseHero> team) {
+
+    public BaseHero(int hp, int maxHp, int armor, int damage,
+                    int initiative, String name, ArrayList<BaseHero> team, Coordinate coordinate) {
         this.hp = hp;
         this.maxHp = maxHp;
         this.armor = armor;
         this.damage = damage;
-        this.lvl = lvl;
         this.initiative = initiative;
+        this.lvl = 1; //добавиться поле очки уровня и метод повышения уровня
+        //this.exp = 0;
         this.name = name;
         this.team.addAll(team);
         team.forEach(unit -> unit.team.add(this));
+        this.coordinate = coordinate;
     }
+
 
     @Override
     public String getInfo() {
@@ -29,30 +32,25 @@ public abstract class BaseHero implements GameInterface, Comparable<BaseHero> {
     }
 
     @Override
-    public void step() {}
+    public int compareTo(BaseHero o) {
+        return Integer.compare(o.initiative, this.initiative);
+    }
 
     @Override
-    public int compareTo(BaseHero o) {
-        return Integer.compare(this.initiative, o.initiative);
-    }
+    public void step(ArrayList<BaseHero> units) {}
+
 
     public void damaged(int damage) {
         if (damage > 0) {
             this.hp -= damage - this.armor;
+            if (this.hp < 0) this.hp = 0;
         } else {
             this.hp -= damage;
             if (this.hp > this.maxHp) {this.hp = this.maxHp;}
         }
     }
 
-//    protected void move(double direction) {
-//        //this.position += direction * this.speed;
-//    }
-//
-//    protected void attack(Object aim) {
-//        //aim.getDamage(this.damage);
-//    }
-//
+    public boolean isDeath() {return hp <= 0;}
 
     public ArrayList<BaseHero> getTeam() {
         return this.team;
@@ -66,7 +64,7 @@ public abstract class BaseHero implements GameInterface, Comparable<BaseHero> {
         return maxHp;
     }
 
-    public int getInitiative() {
-        return initiative;
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 }

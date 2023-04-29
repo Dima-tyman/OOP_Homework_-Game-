@@ -1,18 +1,22 @@
 package Units.Mage;
 
 import Units.BaseHero;
+import Units.Coordinate;
+
 import java.util.ArrayList;
 
 public abstract class Mage extends BaseHero {
 
     protected int mana, maxMana;
 
-    public Mage(int hp, int maxHp, int armor, int damage, int lvl, int initiative,
-                int mana, int maxMana, String name, ArrayList<BaseHero> team) {
-        super(hp, maxHp, armor, damage, lvl, initiative, name, team);
+
+    public Mage(int hp, int maxHp, int armor, int damage, int mana, int maxMana,
+                int initiative, String name, ArrayList<BaseHero> team, Coordinate coordinate) {
+        super(hp, maxHp, armor, damage, initiative, name, team, coordinate);
         this.mana = mana;
         this.maxMana = maxMana;
     }
+
 
     @Override
     public String getInfo() {
@@ -20,14 +24,12 @@ public abstract class Mage extends BaseHero {
     }
 
     @Override
-    public void step() {
-        if (this.hp == 0) {
-            System.out.println(this.name + " умер");
-        } else {
+    public void step(ArrayList<BaseHero> units) {
+        if (!isDeath()) {
             int minOutHpIdx = -1, idx = 0;
             double minOutHp = 1;
             for (BaseHero unit : this.team) {
-                if (unit.getHp() != 0 && unit.getHp() != unit.getMaxHp() &&
+                if (!unit.isDeath() && unit.getHp() < unit.getMaxHp() &&
                         (double) unit.getHp() / unit.getMaxHp() < minOutHp) {
                     minOutHp = (double) unit.getHp() / unit.getMaxHp();
                     minOutHpIdx = idx;

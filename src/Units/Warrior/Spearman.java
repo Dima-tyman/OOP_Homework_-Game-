@@ -1,12 +1,17 @@
 package Units.Warrior;
 
 import Units.BaseHero;
+import Units.Coordinate;
+import Units.HeroParameters;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Spearman extends Warrior {
 
-    public Spearman(String name, ArrayList<BaseHero> team) {
-        super(60, 120, 10, 15, 1, 4, 20, 30, name, team);
+    public Spearman(String name, ArrayList<BaseHero> team, Coordinate coordinate) {
+        super((int) (HeroParameters.Spearman[0] * (new Random().nextInt(51) + 50) / 100), HeroParameters.Spearman[0],
+                HeroParameters.Spearman[1], HeroParameters.Spearman[2], HeroParameters.Spearman[3],
+                HeroParameters.Spearman[4], HeroParameters.Spearman[5], name, team, coordinate);
     }
 
     @Override
