@@ -14,6 +14,7 @@ public class Crossbowman extends Shooter {
                 HeroParameters.Crossbowman[4], HeroParameters.Crossbowman[5], name, team, coordinate);
     }
 
+
     @Override
     public String toString() {
         return "Арбалетчик";

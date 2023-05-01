@@ -14,8 +14,9 @@ public class Warlock extends Mage {
                 HeroParameters.Warlock[4], HeroParameters.Warlock[5], name, team, coordinate);
     }
 
+
     @Override
     public String toString() {
-        return "Колдун";
+        return "Чародей";
     }
 }

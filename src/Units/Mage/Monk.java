@@ -14,6 +14,7 @@ public class Monk extends Mage {
                 HeroParameters.Monk[4], HeroParameters.Monk[5], name, team, coordinate);
     }
 
+
     @Override
     public String toString() {
         return "Монах";

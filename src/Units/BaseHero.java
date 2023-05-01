@@ -28,7 +28,8 @@ public abstract class BaseHero implements GameInterface, Comparable<BaseHero> {
 
     @Override
     public String getInfo() {
-        return name + " (" + lvl + " лвл), здоровье: " + hp + "/" + maxHp + ", броня: " + armor + ", урон: " + damage;
+        return name + " HP " + hp + "/" + maxHp + ", ARM " + armor + ", DMG " + damage;
+        //return name + " (" + lvl + " лвл), здоровье: " + hp + "/" + maxHp + ", броня: " + armor + ", урон: " + damage;
     }
 
     @Override

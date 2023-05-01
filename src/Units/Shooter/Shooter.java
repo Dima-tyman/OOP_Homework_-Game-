@@ -23,7 +23,7 @@ public abstract class Shooter extends BaseHero {
 
     @Override
     public String getInfo() {
-        return super.getInfo() + ", кол-во снарядов: " + ammo + ", точность: " + accuracy + ".";
+        return super.getInfo() + ", AMMO " + ammo + ", ACC " + accuracy;
     }
 
     @Override
@@ -42,31 +42,21 @@ public abstract class Shooter extends BaseHero {
 
             if (minDistanceIdx != -1) {
                 units.get(minDistanceIdx).damaged(this.damage);
-
-                if (this.villager == null || this.villager.isDeath()) {
-                    this.villager = null;
-                    this.villager = findBusyVillager();
-                    if (this.villager == null) {
-                        this.ammo--;
-                    } else {
-                        this.villager.busy(this);
-                    }
-                }
+                this.ammo--;
             }
         }
     }
 
 
-    private Villager findBusyVillager() {
-        for (BaseHero unit : this.team) {
-            if (!unit.isDeath() && unit.getClass() == Villager.class && !((Villager) unit).isBusy()) {
-                return (Villager) unit;
-            }
-        }
-        return null;
+    public void putAmmo() {
+        this.ammo++;
     }
 
-    public void deathVillager() {
-        this.villager = null;
+    public Villager getVillager() {
+        return villager;
+    }
+
+    public void setVillager(Villager villager) {
+        this.villager = villager;
     }
 }

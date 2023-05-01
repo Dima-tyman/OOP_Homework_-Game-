@@ -20,7 +20,7 @@ public abstract class Mage extends BaseHero {
 
     @Override
     public String getInfo() {
-        return super.getInfo() + ", мана: " + mana + "/" + maxMana + ".";
+        return super.getInfo() + ", MP " + mana + "/" + maxMana;
     }
 
     @Override

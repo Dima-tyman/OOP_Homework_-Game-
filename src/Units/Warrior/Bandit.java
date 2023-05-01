@@ -14,6 +14,7 @@ public class Bandit extends Warrior {
                 HeroParameters.Bandit[4], HeroParameters.Bandit[5], name, team, coordinate);
     }
 
+
     @Override
     public String toString() {
         return "Бандит";

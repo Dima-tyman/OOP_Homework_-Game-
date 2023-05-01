@@ -20,6 +20,6 @@ public abstract class Warrior extends BaseHero {
 
     @Override
     public String getInfo() {
-        return super.getInfo() + ", сопротивление: " + resistance + ", ульта: " + ultimateDamage + ".";
+        return super.getInfo() + ", RES " + resistance + ", ULT " + ultimateDamage;
     }
 }

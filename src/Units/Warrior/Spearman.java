@@ -14,6 +14,7 @@ public class Spearman extends Warrior {
                 HeroParameters.Spearman[4], HeroParameters.Spearman[5], name, team, coordinate);
     }
 
+
     @Override
     public String toString() {
         return "Копейщик";

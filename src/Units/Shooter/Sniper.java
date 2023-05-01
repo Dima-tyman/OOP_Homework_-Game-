@@ -14,6 +14,7 @@ public class Sniper extends Shooter {
                 HeroParameters.Sniper[4], HeroParameters.Sniper[5], name, team, coordinate);
     }
 
+
     @Override
     public String toString() {
         return "Снайпер";
