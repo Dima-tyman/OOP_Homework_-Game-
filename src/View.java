@@ -29,19 +29,20 @@ public class View {
     }
 
     private static String getChar(int x, int y){
-        String out = "| ";
         for (BaseHero human: Game.allTeam) {
-            if (human.getCoordinate().getCoordinate()[0] == x && human.getCoordinate().getCoordinate()[1] == y){
-                if (human.getHp() == 0) {
-                    out = "|" + (AnsiColors.ANSI_RED + human.toString().charAt(0) + AnsiColors.ANSI_RESET);
-                    break;
-                }
-                if (Game.darkTeam.contains(human)) out = "|" + (AnsiColors.ANSI_GREEN + human.toString().charAt(0) + AnsiColors.ANSI_RESET);
-                if (Game.holyTeam.contains(human)) out = "|" + (AnsiColors.ANSI_BLUE + human.toString().charAt(0) + AnsiColors.ANSI_RESET);
-                break;
+            if (!human.isDeath() && human.getCoordinate().getCoordinate()[0] == x && human.getCoordinate().getCoordinate()[1] == y){
+                if (Game.darkTeam.contains(human)) return "|" + (AnsiColors.ANSI_GREEN + human.toString().charAt(0) + AnsiColors.ANSI_RESET);
+                if (Game.holyTeam.contains(human)) return "|" + (AnsiColors.ANSI_BLUE + human.toString().charAt(0) + AnsiColors.ANSI_RESET);
             }
         }
-        return out;
+        for (BaseHero human: Game.allTeam) {
+            if (human.getCoordinate().getCoordinate()[0] == x && human.getCoordinate().getCoordinate()[1] == y){
+                if (human.isDeath()) {
+                    return "|" + (AnsiColors.ANSI_RED + human.toString().charAt(0) + AnsiColors.ANSI_RESET);
+                }
+            }
+        }
+        return "| ";
     }
 
     public static void view() {
@@ -53,7 +54,7 @@ public class View {
         step++;
         Game.allTeam.forEach((v) -> l[0] = Math.max(l[0], v.getInfo().length()));
         System.out.print("_".repeat(l[0]*2));
-        System.out.println("");
+        System.out.println();
 
         System.out.print(top10 + "    ");
         System.out.print("Blue side");
